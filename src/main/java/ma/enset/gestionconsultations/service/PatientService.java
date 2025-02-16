@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class PatientService implements IPatientService {
+    private IPatientDoa patientDoa;
 
     public PatientService(IPatientDoa patientDoa) {
         this.patientDoa = patientDoa;
     }
 
-    private IPatientDoa patientDoa;
     @Override
     public void addPatient(Patient patient) {
         try {

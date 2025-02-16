@@ -8,6 +8,7 @@ public class Patient {
     private String prenom;
     private String tel;
     private List<Consultation> consultations;
+
     public Patient() {
     }
 
@@ -55,5 +56,10 @@ public class Patient {
 
     public void setConsultations(List<Consultation> consultations) {
         this.consultations = consultations;
+    }
+
+    @Override
+    public String toString(){
+        return "Patient : id: " + id + ", nom: " + nom + ", prenom: " + prenom + ", tel: " + tel + ", consultations: " + consultations;
     }
 }

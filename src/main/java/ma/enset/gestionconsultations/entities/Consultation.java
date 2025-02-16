@@ -48,4 +48,9 @@ public class Consultation {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
+
+    @Override
+    public String toString() {
+        return "Consultation: id: " + id + ", dateConsultation: " + dateConsultation + ", description: " + description + ", patient: " + patient;
+    }
 }

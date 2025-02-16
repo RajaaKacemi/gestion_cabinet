@@ -44,7 +44,7 @@ public class PatientDoa implements IPatientDoa{
     @Override
     public List<Patient> findAll() throws SQLException {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * PATIENT");
+        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM PATIENT");
         ResultSet rs = pstm.executeQuery();
         List<Patient> patients = new ArrayList<>();
 
@@ -62,7 +62,7 @@ public class PatientDoa implements IPatientDoa{
     @Override
     public Patient findById(Long id) throws SQLException {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * PATIENT WHERE ID = ?");
+        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM PATIENT WHERE ID = ?");
         pstm.setLong(1, id);
         ResultSet rs = pstm.executeQuery();
         Patient patient = new Patient();
