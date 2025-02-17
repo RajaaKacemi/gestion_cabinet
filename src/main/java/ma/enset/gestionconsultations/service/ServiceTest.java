@@ -16,24 +16,25 @@ public class ServiceTest {
         IPatientService service = new PatientService(new PatientDoa());
         IConsultationService serviceConsultation = new ConsultationService(new ConsultationDao());
 
-        /*Patient patient = new Patient();
+        Patient patient = new Patient();
 
         patient.setNom("Kacemi");
         patient.setPrenom("Majda");
         patient.setTel("0628117312");
 
-        service.addPatient(patient);*/
         List<Patient> patients = service.getPatients();
-        patients.forEach(patient -> System.out.println(patient));
-        System.out.println(patients.get(0));
-        Consultation consultation = new Consultation();
+        List<Consultation> consultations = serviceConsultation.getConsultations();
+
+        patients.forEach(pat -> System.out.println(pat));
+
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         java.util.Date utilDate = dateFormat.parse("20/02/2025"); // Convertir la chaîne en java.util.Date
         Date sqlDate = new Date(utilDate.getTime()); // Convertir en java.sql.Date
-        consultation.setDateConsultation(sqlDate);
-        consultation.setPatient(patients.get(0));
-        consultation.setDescription("Consultation");
-        serviceConsultation.addConsultation(consultation);
+        /*consultation.setDateConsultation(sqlDate);
+        consultation.setPatient(patients.get(1));
+        consultation.setDescription("Consultation de Majda");*/
+        consultations.get(1).setPatient(patients.get(1));
+        serviceConsultation.updateConsultation(consultations.get(1));
     }
 }

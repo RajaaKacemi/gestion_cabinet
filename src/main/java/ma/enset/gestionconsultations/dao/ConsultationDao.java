@@ -16,7 +16,7 @@ public class ConsultationDao implements IConsultationDao {
         PreparedStatement pstm = connection.prepareStatement("INSERT INTO CONSULTATION(DATE_CONSULTATION, DESCRIPTION, PATIENT_ID) " +
                 "VALUES (?, ?, ?)");
         System.out.println("consultation "+ consultation);
-        pstm.setString(1, consultation.getDateConsultation().toString());
+        pstm.setDate(1, consultation.getDateConsultation());
         pstm.setString(2, consultation.getDescription());
         pstm.setLong(3, consultation.getPatient().getId());
         pstm.executeUpdate();
@@ -26,10 +26,11 @@ public class ConsultationDao implements IConsultationDao {
     @Override
     public void update(Consultation consultation) throws SQLException {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement pstm = connection.prepareStatement("UPDATE CONSULTATION SET DATE_CONSULTATION = ?, DESCRIPTION = ?, PATIENT_ID = ?");
-        pstm.setString(1, consultation.getDateConsultation().toString());
+        PreparedStatement pstm = connection.prepareStatement("UPDATE CONSULTATION SET DATE_CONSULTATION = ?, DESCRIPTION = ?, PATIENT_ID = ? WHERE ID = ?");
+        pstm.setDate(1, consultation.getDateConsultation());
         pstm.setString(2, consultation.getDescription());
         pstm.setLong(3, consultation.getPatient().getId());
+        pstm.setLong(4, consultation.getId());
         pstm.executeUpdate();
 
     }

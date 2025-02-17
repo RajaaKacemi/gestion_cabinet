@@ -22,7 +22,6 @@ public class DBConnection {
     }
 
     public static Connection getConnection() {
-        System.out.println("Connection " + connection);
         return connection;
     }
 }
