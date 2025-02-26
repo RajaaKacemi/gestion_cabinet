@@ -6,15 +6,22 @@ import java.sql.SQLException;
 
 public class BDConnection {
 
-    static Connection connection;
-    static  {
+    private static Connection connection;
+
+    static String url = "jdbc:postgresql://localhost:5432/Cabinet";
+    static String user = "postgres";
+    static String password = "admin";
+
+    static {
         try {
-            //add your "jdbc:mysql://localhost:your port/your project name","root if your database does not have credentials "," password empty if you dont have credentials"
-            connection= DriverManager.getConnection(//add here);
+            connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connexion réussie !");
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
     public static Connection getConnection() {
         return connection;
     }

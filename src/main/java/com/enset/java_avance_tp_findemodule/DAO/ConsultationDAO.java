@@ -15,7 +15,8 @@ public class ConsultationDAO implements IConsultationDAO {
     @Override
     public void insert(Consultation consultation) throws SQLException {
 Connection con = BDConnection.getConnection();
-PreparedStatement ps =con.prepareStatement("insert into Consultation(Date,Description,)"+"values (?,?)");
+PreparedStatement ps =con.prepareStatement("INSERT INTO CONSULTATION(DATE_CONSULTATION, DESCRIPTION, PATIENT_ID) " +
+        "VALUES (?, ?, ?)");
 ps.setDate(1,consultation.getDate());
 ps.setString(2,consultation.getDescription());
 ps.execute();
@@ -24,7 +25,7 @@ ps.execute();
     @Override
     public void update(Consultation consultation) throws SQLException {
 Connection con = BDConnection.getConnection();
-PreparedStatement psm=con.prepareStatement("UPDATE consultation set Date=?,Description=? where ID_Consultation=?");
+PreparedStatement psm=con.prepareStatement("UPDATE CONSULTATION SET DATE_CONSULTATION = ?, DESCRIPTION = ?, PATIENT_ID = ? WHERE ID = ?");
 psm.setDate(1,consultation.getDate());
 psm.setString(2,consultation.getDescription());
 psm.setLong(3,consultation.getId());
@@ -34,7 +35,7 @@ psm.execute();
     @Override
     public void delete(Consultation consultation) throws SQLException {
 Connection con = BDConnection.getConnection();
-PreparedStatement psm=con.prepareStatement("DELETE  from Consultation where ID_Consultation=?");
+PreparedStatement psm=con.prepareStatement("DELETE FROM CONSULTATION WHERE ID = ?");
 psm.setLong(1,consultation.getId());
 psm.execute();
     }
@@ -43,14 +44,14 @@ psm.execute();
     public List<Consultation> getAll() throws SQLException {
 
         Connection con = BDConnection.getConnection();
-        PreparedStatement psm=con.prepareStatement("SELECT * from Consultation");
+        PreparedStatement psm=con.prepareStatement("SELECT * FROM CONSULTATION");
         ResultSet rs=psm.executeQuery();
         List<Consultation> consultations=new ArrayList<>();
         while (rs.next()){
             Consultation consultation=new Consultation();
-            consultation.setId(rs.getLong("ID_Consultation"));
-            consultation.setDate(rs.getDate("Date"));
-            consultation.setDescription(rs.getString("Description"));
+            consultation.setId(rs.getLong("ID"));
+            consultation.setDate(rs.getDate("DATE_CONSULTATION"));
+            consultation.setDescription(rs.getString("DESCRIPTION"));
             consultations.add(consultation);
         }
         return consultations;
@@ -59,14 +60,14 @@ psm.execute();
     @Override
     public Consultation getById(Long id) throws SQLException {
         Connection con = BDConnection.getConnection();
-        PreparedStatement psm=con.prepareStatement("SELECT from Consultation where ID_Consultation=?");
+        PreparedStatement psm=con.prepareStatement("SELECT * FROM CONSULTATION WHERE ID = ?");
                 psm.setLong(1,id);
         ResultSet rs=psm.executeQuery();
         Consultation consultation=new Consultation();
         while (rs.next()){
-            consultation.setId(rs.getLong("ID_Consultation"));
-            consultation.setDate(rs.getDate("Date"));
-            consultation.setDescription(rs.getString("Description"));
+            consultation.setId(rs.getLong("ID"));
+            consultation.setDate(rs.getDate("DATE_CONSULTATION"));
+            consultation.setDescription(rs.getString("DESCRIPTION"));
 
         }
         return consultation;

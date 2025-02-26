@@ -44,8 +44,8 @@ public class PatinetController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         patientService = new PatientService(new PatientDAO());
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colFName.setCellValueFactory(new PropertyValueFactory<>("fName"));
-        colLName.setCellValueFactory(new PropertyValueFactory<>("lName"));
+        colFName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        colLName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         colTel.setCellValueFactory(new PropertyValueFactory<>("tel"));
 //        patientService.getAllPatients();
 //        patientList.setAll(patientService.getAllPatients());
