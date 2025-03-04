@@ -8,7 +8,6 @@ public class Patient {
     private String nom;
     private String prenom;
     private String tel;
-    //l'association: un patient peut avoir plusieurs consultation
     private List<Consultation> consultations;
 
     public Patient(){}
@@ -53,7 +52,7 @@ public class Patient {
 
     @Override
     public String toString() {
-        return
-                nom + " " + prenom ;
+        return nom + " " + prenom;
     }
+
 }

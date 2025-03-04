@@ -24,7 +24,7 @@ public class ConsultationController implements Initializable {
     private ICabinetService cabinetService;
     private Consultation selectedConsultation;
     private ObservableList<Patient> patients = FXCollections.observableArrayList();
-//
+
     @FXML private TableView<Consultation> tableConsultation;
     @FXML private TableColumn<Consultation, Long> columnId;
     @FXML private TableColumn<Consultation, Date> columnDateConsultation;
@@ -32,7 +32,7 @@ public class ConsultationController implements Initializable {
     @FXML private TableColumn<Consultation, String> columnPatient;
     @FXML private Label labelSuccess;
     private ObservableList<Consultation> consultations = FXCollections.observableArrayList();
-//
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,13 +40,17 @@ public class ConsultationController implements Initializable {
         comboPatient.setItems(patients);
         patients.setAll(cabinetService.getAllPatients());
 
-        //
         tableConsultation.setItems(consultations);
         columnId.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
         columnDateConsultation.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDateConsultation()));
-        columnPatient.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPatient().getNom()));
+        columnPatient.setCellValueFactory(cellData ->
+                new SimpleStringProperty(
+                        cellData.getValue().getPatient().getNom() + " " + cellData.getValue().getPatient().getPrenom()
+                )
+        );
+
         columnDescription.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));
-        //
+
         loadConsultation();
         tableConsultation.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {

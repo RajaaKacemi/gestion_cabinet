@@ -51,9 +51,11 @@ public class Consultation {
 
     @Override
     public String toString() {
-        return
-             (patient != null ? patient.getNom() : "Aucun patient") + patient.getPrenom() + " " ;
-
+        if (patient == null) {
+            return "Aucun patient";
+        }
+        return patient.getNom() + " " + patient.getPrenom();
     }
+
 
 }

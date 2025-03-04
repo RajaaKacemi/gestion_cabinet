@@ -12,7 +12,7 @@ public class PatientDao implements IPatientDao{
     @Override
     public void create(Patient patient) throws SQLException {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement pstm = connection.prepareStatement("INSERT INTO PATIENTS(NOM, PRENOM, TEL)" + "VALUES(?,?,?)");
+        PreparedStatement pstm = connection.prepareStatement("INSERT INTO PATIENT(NOM, PRENOM, TEL)" + "VALUES(?,?,?)");
         pstm.setString(1,patient.getNom());
         pstm.setString(2,patient.getPrenom());
         pstm.setString(3,patient.getTel());
@@ -22,7 +22,7 @@ public class PatientDao implements IPatientDao{
     @Override
     public void update(Patient patient) throws SQLException {
     Connection connection = DBConnection.getConnection();
-    PreparedStatement pstm = connection.prepareStatement("Update PATIENTS SET NOM=?, PRENOM=?, TEL=? WHERE ID_PATIENT=?");
+    PreparedStatement pstm = connection.prepareStatement("Update PATIENT SET NOM=?, PRENOM=?, TEL=? WHERE ID=?");
     pstm.setString(1,patient.getNom());
     pstm.setString(2, patient.getPrenom());
     pstm.setString(3,patient.getTel());
@@ -34,7 +34,7 @@ public class PatientDao implements IPatientDao{
     @Override
     public void delete(Patient patient) throws SQLException {
     Connection connection = DBConnection.getConnection();
-    PreparedStatement pstm = connection.prepareStatement("DELETE FROM PATIENTS WHERE ID_PATIENT=?");
+    PreparedStatement pstm = connection.prepareStatement("DELETE FROM PATIENT WHERE ID=?");
     pstm.setLong(1,patient.getId());
     pstm.executeUpdate();
     }
@@ -43,12 +43,12 @@ public class PatientDao implements IPatientDao{
     @Override
     public List<Patient> findAll() throws SQLException {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM PATIENTS");
+        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM PATIENT");
         ResultSet rs = pstm.executeQuery();
         List<Patient> patients = new ArrayList<>();
         while(rs.next()){
             Patient patient = new Patient();
-            patient.setId(rs.getLong("ID_PATIENT"));
+            patient.setId(rs.getLong("ID"));
             patient.setNom(rs.getString("NOM"));
             patient.setPrenom(rs.getString("PRENOM"));
             patient.setTel(rs.getString("TEL"));
@@ -60,7 +60,7 @@ public class PatientDao implements IPatientDao{
     @Override
     public Patient findbyId(Long id) throws SQLException {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM PATIENTS WHERE ID_PATIENT=?");
+        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM PATIENTS WHERE ID=?");
         pstm.setLong(1,id);
         ResultSet rs = pstm.executeQuery();
         Patient patient = new Patient();
@@ -76,14 +76,14 @@ public class PatientDao implements IPatientDao{
     @Override
     public List<Patient> searchByQuery(String query) throws SQLException {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM PATIENTS WHERE NOM LIKE ? OR PRENOM LIKE ?");
+        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM PATIENT WHERE NOM LIKE ? OR PRENOM LIKE ?");
         pstm.setString(1,"%"+query+"%");
         pstm.setString(2,"%"+query+"%");
         ResultSet rs = pstm.executeQuery();
         List<Patient> patients = new ArrayList<>();
         while(rs.next()){
             Patient patient = new Patient();
-            patient.setId(rs.getLong("ID_PATIENT"));
+            patient.setId(rs.getLong("ID"));
             patient.setNom(rs.getString("NOM"));
             patient.setPrenom(rs.getString("PRENOM"));
             patient.setTel(rs.getString("TEL"));
