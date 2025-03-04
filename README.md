@@ -2,12 +2,12 @@
 
 This is a JavaFX desktop application for managing patient consultations
 
-## 📌 Features
+## Features
 - Add, update, and delete consultations
 - Select patients from a dropdown list
 - Store and retrieve data from a database (PostgreSQL)
 
-## 🛠️ Setup & Installation
+## Setup & Installation
 
 ### 1️⃣ Prerequisites
 Ensure you have the following installed:
