@@ -1,3 +1,5 @@
+This repository contain a small Desktop application carried out as part of my Master's degree in Computer Engineering: Big Data and Cloud Computing at ENSET.
+
 # JavaFX Desktop Application - Gestion Cabinet
 
 This is a JavaFX desktop application for managing patient consultations
