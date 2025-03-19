@@ -1,6 +1,6 @@
 # JavaFX Desktop Application - Gestion Cabinet
 
-This is a JavaFX desktop application for managing patient consultations
+This is a JavaFX desktop application for managing patient consultations.The application is developed as part of a Master’s degree project in Computer Engineering: Big Data and Cloud Computing at ENSET.
 
 ## Features
 - Add, update, and delete consultations
