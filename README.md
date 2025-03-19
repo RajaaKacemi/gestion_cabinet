@@ -45,3 +45,7 @@ CREATE DATABASE Cabinet;
 - JDBC for database connectivity
 - MySQL/PostgreSQL for data storage
 - Maven (if applicable)
+
+## Screenshots
+![Alt Text](screenshots/img_1.png)
+![Alt Text](screenshots/img.png)
