@@ -47,5 +47,7 @@ CREATE DATABASE Cabinet;
 - Maven (if applicable)
 
 ## Screenshots
+
 ![Alt Text](screenshots/img_1.png)
+
 ![Alt Text](screenshots/img.png)
